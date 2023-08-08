@@ -245,37 +245,37 @@ TIMEZONE_MAP = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_M
 #DMOJ_PDF_PDFOID_URL = '<URL to your pdfoid install>.'
 
 # Directory to cache the PDF.
-#DMOJ_PDF_PROBLEM_CACHE = '/home/dmoj-uwsgi/pdfcache'
+DMOJ_PDF_PROBLEM_CACHE = '/home/dmoj-uwsgi/pdfcache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
-#DMOJ_PDF_PROBLEM_INTERNAL = '/pdfcache'
+DMOJ_PDF_PROBLEM_INTERNAL = '/pdfcache'
 
 ## Data download settings.
 # Uncomment to allow users to download their data.
-#DMOJ_USER_DATA_DOWNLOAD = True
+DMOJ_USER_DATA_DOWNLOAD = True
 
 # Directory to cache user data downloads.
 # It is the administrator's responsibility to clean up old files.
-#DMOJ_USER_DATA_CACHE = '/home/dmoj-uwsgi/userdatacache'
+DMOJ_USER_DATA_CACHE = '/home/dmoj-uwsgi/userdatacache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
-#DMOJ_USER_DATA_INTERNAL = '/userdatacache'
+DMOJ_USER_DATA_INTERNAL = '/userdatacache'
 
 # How often a user can download their data.
 #DMOJ_USER_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
 
 # Uncomment to allow contest authors to download contest data
-#DMOJ_CONTEST_DATA_DOWNLOAD = True
+DMOJ_CONTEST_DATA_DOWNLOAD = True
 
 # Directory to cache contest data downloads.
 # It is the administrator's responsibility to clean up old files.
-#DMOJ_CONTEST_DATA_CACHE = '/home/dmoj-uwsgi/contestdatacache'
+DMOJ_CONTEST_DATA_CACHE = '/home/dmoj-uwsgi/contestdatacache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
-#DMOJ_CONTEST_DATA_INTERNAL = '/contestdatacache'
+DMOJ_CONTEST_DATA_INTERNAL = '/contestdatacache'
 
 # How often contest data can be exported.
 # This applies per contest, not per user.
