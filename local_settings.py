@@ -11,6 +11,7 @@
 # You may use this command to generate a key:
 # python3 -c 'from django.core.management.utils import get_random_secret_key;print(get_random_secret_key())'
 SECRET_KEY = '8fjw&icxg%+txlasc--g$ij9_9c#)un3m6_0tl5o)6uh2!^p+e'
+# CHAT_SECRET_KEY = 'Qxf4eZAN6yzshMzvEMwQiES4q87A4FKvXkcfZEBDOJg='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # Change to False once you are done with runserver testing.
@@ -245,7 +246,7 @@ TIMEZONE_MAP = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_M
 #DMOJ_PDF_PDFOID_URL = '<URL to your pdfoid install>.'
 
 # Directory to cache the PDF.
-DMOJ_PDF_PROBLEM_CACHE = '/home/dmoj-uwsgi/pdfcache'
+DMOJ_PDF_PROBLEM_CACHE = '/home/abc/web/dmoj-uwsgi/pdfcache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
@@ -257,7 +258,7 @@ DMOJ_USER_DATA_DOWNLOAD = True
 
 # Directory to cache user data downloads.
 # It is the administrator's responsibility to clean up old files.
-DMOJ_USER_DATA_CACHE = '/home/dmoj-uwsgi/userdatacache'
+DMOJ_USER_DATA_CACHE = '/home/abc/web/dmoj-uwsgi/userdatacache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
@@ -271,7 +272,7 @@ DMOJ_CONTEST_DATA_DOWNLOAD = True
 
 # Directory to cache contest data downloads.
 # It is the administrator's responsibility to clean up old files.
-DMOJ_CONTEST_DATA_CACHE = '/home/dmoj-uwsgi/contestdatacache'
+DMOJ_CONTEST_DATA_CACHE = '/home/abc/web/dmoj-uwsgi/contestdatacache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
