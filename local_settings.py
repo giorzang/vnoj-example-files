@@ -156,7 +156,7 @@ MEDIA_ROOT = '/home/abc/web/media'
 ## Problem data settings.
 # This is the directory where all the problem data are stored.
 # Change this to somewhere more permanent.
-DMOJ_PROBLEM_DATA_ROOT = '/home/abc/web/problem_data/'
+DMOJ_PROBLEM_DATA_ROOT = '/home/abc/web/problems/'
 
 ## Bridge controls.
 # The judge connection address and port; where the judges will connect to the site.
@@ -181,13 +181,13 @@ BAD_MAIL_PROVIDERS = set()
 
 ## Event server.
 # Uncomment to enable live updating.
-#EVENT_DAEMON_USE = True
+EVENT_DAEMON_USE = True
 
 # Uncomment this section to use websocket/daemon.js included in the site.
 #EVENT_DAEMON_POST = '<ws:// URL to post to>'
 
 # If you are using the defaults from the guide, it is this:
-EVENT_DAEMON_POST = 'ws://127.0.0.1:15101/'
+EVENT_DAEMON_POST = 'ws://192.168.1.100:15101/'
 
 # These are the publicly accessed interface configurations.
 # They should match those used by the script.
@@ -265,7 +265,7 @@ DMOJ_USER_DATA_CACHE = '/home/abc/web/dmoj-uwsgi/userdatacache'
 DMOJ_USER_DATA_INTERNAL = '/userdatacache'
 
 # How often a user can download their data.
-#DMOJ_USER_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
+DMOJ_USER_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
 
 # Uncomment to allow contest authors to download contest data
 DMOJ_CONTEST_DATA_DOWNLOAD = True
@@ -280,7 +280,7 @@ DMOJ_CONTEST_DATA_INTERNAL = '/contestdatacache'
 
 # How often contest data can be exported.
 # This applies per contest, not per user.
-#DMOJ_CONTEST_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
+DMOJ_CONTEST_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=0)
 
 ## ======== Logging Settings ========
 # Documentation: https://docs.djangoproject.com/en/3.2/ref/settings/#logging
