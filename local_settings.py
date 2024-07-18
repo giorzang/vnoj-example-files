@@ -142,7 +142,7 @@ STATIC_ROOT = '/home/abc/web/static'
 
 ## DMOJ site display settings.
 SITE_NAME = 'VNOJ'
-SITE_FULL_URL = 'https://oj.vnoi.info'
+SITE_FULL_URL = 'http://192.168.1.100'
 SITE_LONG_NAME = 'VNOJ: VNOI Online Judge'
 SITE_ADMIN_EMAIL = 'admin@example.com'
 TERMS_OF_SERVICE_URL = '//oj.vnoi.info/tos/'  # Use a flatpage.
