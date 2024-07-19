@@ -14,6 +14,8 @@ mysql -uroot -p
 CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 GRANT ALL PRIVILEGES ON dmoj.* TO 'dmoj'@'localhost' IDENTIFIED BY 'root';
 exit
+// mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -D mysql -u root -p
+// mysql -u root -p -e "flush tables;" mysql
 exit
 mkdir web && cd web && mkdir media problem_data tmp
 python3 -m venv vnojsite
