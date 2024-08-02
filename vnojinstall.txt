@@ -97,55 +97,6 @@ sudo make judge-tiervnoj
 
 
 
-FROM vnoj/runtimes-tier1
-
-ARG TAG=master
-
-RUN apt-get update && \
-	apt-get install -y --no-install-recommends openjdk-19-jdk-headless openjdk-19-jre-headless golang unzip jq && \
-	rm -rf /var/lib/apt/lists/*
-
-# Install scratch-run + pypy + kotlin + rust
-RUN ARCH=$([ $(uname -m) = "x86_64" ] && echo "amd64" || echo "arm64") && \
-	curl --location -o scratch-run.zip $(curl -s https://api.github.com/repos/VNOI-Admin/scratch-run/releases/latest | grep -o -m 1 "https://github\.com.*.*linux_$ARCH\.zip") && \
-		unzip scratch-run.zip && \
-		mv scratch-run /usr/bin/scratch-run && \
-		rm scratch-run.zip && \
-	curl -L -okotlin.zip "$(curl -s https://api.github.com/repos/JetBrains/kotlin/releases | \
-		jq -r '[.[] | select(.prerelease | not) | .assets | flatten | .[] | select((.name | startswith("kotlin-compiler")) and (.name | endswith(".zip"))) | .browser_download_url][0]')" && \
-		unzip kotlin.zip && mv kotlinc /opt/kotlin && rm kotlin.zip && \
-	runuser judge -c 'curl https://sh.rustup.rs -sSf | sh -s -- -y' && \
-		mkdir rust && ( \
-			cd rust && \
-			curl -sL https://raw.githubusercontent.com/DMOJ/judge/master/dmoj/executors/RUST.py | \
-				sed '/^CARGO_TOML/,/^"""/!d;//d' > Cargo.toml && \
-			mkdir src && \
-			curl -sL https://raw.githubusercontent.com/DMOJ/judge/master/dmoj/executors/RUST.py | \
-				sed '/^TEST_PROGRAM/,/^"""/!d;//d' > src/main.rs && \
-			chown -R judge: . && \
-			runuser -u judge /home/judge/.cargo/bin/cargo fetch \
-		) && \
-		rm -rf rust
-
-ENV PATH="/opt/kotlin/bin:/home/judge/.cargo/bin:${PATH}"
-
-RUN mkdir /judge /problems && cd /judge && \
-	curl -L https://github.com/VNOI-Admin/judge-server/archive/"${TAG}".tar.gz | tar -xz --strip-components=1 && \
-	python3 -m venv --prompt=DMOJ /env && \
-	/env/bin/pip3 install setuptools && \
-	/env/bin/pip3 install cython && \
-	/env/bin/pip3 install -e . && \
-	/env/bin/python3 setup.py develop && \
-	HOME=~judge . ~judge/.profile && \
-	runuser -u judge -w PATH -- /env/bin/dmoj-autoconf -V > /judge-runtime-paths.yml && \
-	echo '  crt_x86_in_lib32: true' >> /judge-runtime-paths.yml && \
-	mkdir -p /usr/lib/fpc/ && cp /judge/asset/Windows.pas /usr/lib/fpc/ && fpc -Fe/dev/stderr -O2 /usr/lib/fpc/Windows.pas && \
-	/judge/.docker/download_testlib_and_precompile
-
-ENTRYPOINT ["/usr/bin/tini", "--", "/judge/.docker/entry"]
-
-
-
 
 id: tourist
 key: 9Kf6FO06legHLB8QmmQAJe6vWKC/dlJS0DrbUnYMU61GKHBQMKkB/s9WuHAIy+GE+jiCLN0c8bnJVce0V9vk7c1IiEeksD7/JXl9
