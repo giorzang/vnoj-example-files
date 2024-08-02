@@ -59,7 +59,7 @@ sudo nginx -t
 sudo chown www-data:www-data /home/abc/web/tmp/dmoj-site.sock
 sudo chmod 755 /home/abc/web/tmp/dmoj-site.sock
 // sudo chmod 755 /home
-// sudo chmod 755 /home/abc
+sudo chmod 755 /home/abc
 // sudo chmod 755 /home/abc/web
 // sudo chmod 755 /home/abc/web/tmp
 nano websocket/config.js
