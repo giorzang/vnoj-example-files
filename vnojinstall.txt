@@ -1,17 +1,14 @@
 sudo -i
 apt update
 apt upgrade
-apt install git gcc g++ make python3-dev python3-pip python3-venv libxml2-dev libxslt1-dev zlib1g-dev gettext curl redis-server pkg-config
-add-apt-repository -y ppa:ubuntu-toolchain-r/test
-apt install -y g++-13 gcc-13 net-tools
-mv /usr/bin/g++-13 /usr/bin/g++ && cp /usr/bin/g++ /usr/bin/g++-13
-mv /usr/bin/gcc-13 /usr/bin/gcc && cp /usr/bin/gcc /usr/bin/gcc-13
+apt install -y git gcc g++ make python3-dev python3-pip python3-venv libxml2-dev libxslt1-dev zlib1g-dev gettext curl redis-server pkg-config net-tools
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 apt install nodejs
+// npm install -g sass postcss-cli postcss autoprefixer
 apt update
 apt install mariadb-server libmysqlclient-dev
 mysql -uroot -p
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'Passwd2@';
+ALTER USER 'root'@'localhost' IDENTIFIED BY '<pass>';
 FLUSH PRIVILEGES;
 CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 GRANT ALL PRIVILEGES ON dmoj.* TO 'dmoj'@'localhost' IDENTIFIED BY 'root';
@@ -19,15 +16,15 @@ exit
 // mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -D mysql -u root -p
 // mysql -u root -p -e "flush tables;" mysql
 exit
-mkdir web && cd web && mkdir media problem_data tmp
+mkdir web && cd web && mkdir media problems tmp dmoj-uwsgi dmoj-uwsgi/pdfcache dmoj-uwsgi/userdatacache dmoj-uwsgi/contestdatacache
 python3 -m venv vnojsite
 . vnojsite/bin/activate
 git clone --recursive https://github.com/VNOI-Admin/OJ.git
 cd OJ
-pip3 install wheel
-pip3 install setuptools
+pip3 install setuptools wheel
 pip3 install -r requirements.txt
 npm install
+// pip3 install mysqlclient
 nano dmoj/local_settings.py
 ./manage.py check
 ./make_style.sh
