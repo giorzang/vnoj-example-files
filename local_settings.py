@@ -10,15 +10,15 @@
 # SECURITY WARNING: keep the secret key used in production secret!
 # You may use this command to generate a key:
 # python3 -c 'from django.core.management.utils import get_random_secret_key;print(get_random_secret_key())'
-SECRET_KEY = '8fjw&icxg%+txlasc--g$ij9_9c#)un3m6_0tl5o)6uh2!^p+e'
-# CHAT_SECRET_KEY = 'Qxf4eZAN6yzshMzvEMwQiES4q87A4FKvXkcfZEBDOJg='
+SECRET_KEY = 'diow=&wyt1&@#5j8f92x(f2f763x9-&0to%^xrpghv8y_)dl7k'
+#CHAT_SECRET_KEY = 'Qxf4eZAN6yzshMzvEMwQiES4q87A4FKvXkcfZEBDOJg='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # Change to False once you are done with runserver testing.
 
 # Uncomment and set to the domain names this site is intended to serve.
 # You must do this once you set DEBUG to False.
-ALLOWED_HOSTS = ['192.168.1.100']
+ALLOWED_HOSTS = ['*']
 
 # Optional apps that DMOJ can make use of.
 INSTALLED_APPS += (
@@ -28,12 +28,8 @@ INSTALLED_APPS += (
 # Documentation: <https://docs.djangoproject.com/en/3.2/topics/cache/>
 CACHES = {
     'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
-    }
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
 }
 
 # Your database credentials. Only MySQL is supported by DMOJ.
@@ -88,6 +84,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # The following block is included for your convenience, if you want
 # to use Gmail.
+SEND_ACTIVATION_EMAIL = False
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_USE_TLS = True
 #EMAIL_HOST = 'smtp.gmail.com'
@@ -96,10 +93,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #EMAIL_PORT = 587
 
 # To use Mailgun, uncomment this block.
-# You will need to run `pip install django-mailgun` to get `MailgunBackend`.
-#EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-#MAILGUN_ACCESS_KEY = '<your Mailgun access key>'
-#MAILGUN_SERVER_NAME = '<your Mailgun domain>'
+# You will need to run `pip install django-mailgun-mime` to get `MailgunBackend`.
+#EMAIL_BACKEND = 'django_mailgun_mime.backends.MailgunMIMEBackend'
+#MAILGUN_API_KEY = '<your Mailgun access key>'
+#MAILGUN_DOMAIN_NAME = '<your Mailgun domain>'
 
 # You can also use SendGrid, with `pip install sendgrid-django`.
 #EMAIL_BACKEND = 'sgbackend.SendGridBackend'
@@ -111,11 +108,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # A tuple of (name, email) pairs that specifies those who will be mailed
 # when the server experiences an error when DEBUG = False.
 ADMINS = (
-    ('Your Name', 'your.email@example.com'),
+    ('Vu Giang', 'giang213205@gmail.com'),
 )
 
 # The sender for the aforementioned emails.
-SERVER_EMAIL = 'VNOJ: VNOI Online Judge <vnoj@vnoi.info>'
+SERVER_EMAIL = 'no.reply.thqn@gmail.com'
 
 
 ################################################
@@ -141,11 +138,11 @@ STATIC_ROOT = '/home/abc/web/static'
 ############################################
 
 ## DMOJ site display settings.
-SITE_NAME = 'VNOJ'
-SITE_FULL_URL = 'http://192.168.1.100'
-SITE_LONG_NAME = 'VNOJ: VNOI Online Judge'
-SITE_ADMIN_EMAIL = 'admin@example.com'
-TERMS_OF_SERVICE_URL = '//oj.vnoi.info/tos/'  # Use a flatpage.
+SITE_NAME = 'THQNOJ'
+SITE_FULL_URL = 'http://tinhocquangninh.ddns.net'
+SITE_LONG_NAME = 'THQNOJ: Tin Hoc Quang Ninh Online Judge'
+SITE_ADMIN_EMAIL = 'giang213205@gmail.com'
+TERMS_OF_SERVICE_URL = None  # Use a flatpage.
 
 ## Media files settings.
 # This is the directory where all the media files are stored.
@@ -181,13 +178,13 @@ BAD_MAIL_PROVIDERS = set()
 
 ## Event server.
 # Uncomment to enable live updating.
-EVENT_DAEMON_USE = True
+#EVENT_DAEMON_USE = True
 
 # Uncomment this section to use websocket/daemon.js included in the site.
 #EVENT_DAEMON_POST = '<ws:// URL to post to>'
 
 # If you are using the defaults from the guide, it is this:
-EVENT_DAEMON_POST = 'ws://192.168.1.100:15101/'
+EVENT_DAEMON_POST = 'ws://127.0.0.1:15101/'
 
 # These are the publicly accessed interface configurations.
 # They should match those used by the script.
@@ -197,7 +194,7 @@ EVENT_DAEMON_POST = 'ws://192.168.1.100:15101/'
 # i.e. the path to /channels/ exposed by the daemon, through whatever proxy setup you have.
 
 # Using our standard nginx configuration, these should be:
-EVENT_DAEMON_GET = 'ws://192.168.1.100/event/'
+EVENT_DAEMON_GET = 'ws://127.0.0.1/event/'
 #EVENT_DAEMON_GET_SSL = 'wss://<your domain>/event/'  # Optional
 EVENT_DAEMON_POLL = '/channels/'
 
@@ -265,7 +262,7 @@ DMOJ_USER_DATA_CACHE = '/home/abc/web/dmoj-uwsgi/userdatacache'
 DMOJ_USER_DATA_INTERNAL = '/userdatacache'
 
 # How often a user can download their data.
-DMOJ_USER_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
+#DMOJ_USER_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
 
 # Uncomment to allow contest authors to download contest data
 DMOJ_CONTEST_DATA_DOWNLOAD = True
@@ -280,7 +277,7 @@ DMOJ_CONTEST_DATA_INTERNAL = '/contestdatacache'
 
 # How often contest data can be exported.
 # This applies per contest, not per user.
-DMOJ_CONTEST_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=0)
+#DMOJ_CONTEST_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
 
 ## ======== Logging Settings ========
 # Documentation: https://docs.djangoproject.com/en/3.2/ref/settings/#logging
