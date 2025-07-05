@@ -78,9 +78,6 @@ sudo supervisorctl start all
 
 
 
-
-
-
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -101,13 +98,10 @@ sudo make judge-tiervnoj
 
 
 
-
-
 id: tourist
 key: 9Kf6FO06legHLB8QmmQAJe6vWKC/dlJS0DrbUnYMU61GKHBQMKkB/s9WuHAIy+GE+jiCLN0c8bnJVce0V9vk7c1IiEeksD7/JXl9
 problem_storage_globs:
   - /problems/*
-
 
 sudo docker run \
     --name tourist \
@@ -118,3 +112,12 @@ sudo docker run \
     --restart=always \
     vnoj/judge-tiervnoj:latest \
     run -p 9999 -c /problems/tourist.yml localhost -A 0.0.0.0 -a 12341
+
+
+
+
+sudo nano /etc/systemd/system/noip2.service
+sudo systemctl daemon-reload
+sudo systemctl enable noip2
+sudo systemctl start noip2
+sudo systemctl status noip2
