@@ -62,13 +62,13 @@ sudo nginx -t
 # sudo chown www-data:www-data /home/abc/web/tmp/dmoj-site.sock
 # sudo chmod 755 /home/abc/web/tmp/dmoj-site.sock
 # sudo chmod 755 /home
-# sudo chmod 755 /home/abc
-sudo chmod 755 /home/abc/web
+sudo chmod 755 /home/abc
+#sudo chmod 755 /home/abc/web
 # sudo chmod 755 /home/abc/web/tmp
 sudo services nginx reload
 nano websocket/config.js
 pip3 install websocket-client
-// npm install simplesets qu ws
+// npm install simplesets qu ws socker.io express
 sudo nano /etc/supervisor/conf.d/wsevent.conf
 sudo supervisorctl update
 sudo supervisorctl stop all
